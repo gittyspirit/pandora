@@ -2,8 +2,6 @@ FROM python:3.9-slim@sha256:5f0192a4f58a6ce99f732fe05e3b3d00f12ae62e183886bca3eb
 
 MAINTAINER "Neo Peng <pengzhile@gmail.com>"
 
-EXPOSE 5000
-
 VOLUME /data
 
 WORKDIR /opt/app
@@ -12,6 +10,8 @@ ADD . .
 
 RUN pip --no-cache-dir install --upgrade pip && pip --no-cache-dir install .[api,cloud]
 
+RUN docker pull pengzhile/pandora
+
 ENTRYPOINT ["bin/startup.sh"]
 
-CMD ["pandora","-s","0.0.0.0:5000"]
+CMD ["docker","run","-it", "--rm", "pengzhile/pandora"]
