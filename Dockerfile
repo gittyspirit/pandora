@@ -13,3 +13,5 @@ ADD . .
 RUN pip --no-cache-dir install --upgrade pip && pip --no-cache-dir install .[api,cloud]
 
 ENTRYPOINT ["bin/startup.sh"]
+
+CMD ["pandora","-s","0.0.0.0:5000"]
